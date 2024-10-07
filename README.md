@@ -2,6 +2,8 @@
 
 This Project is a Web App for an [Osu](https://osu.ppy.sh/) Reccomender. Currently still in development.
 
+The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1YpUwtSMO/osu-reccomender?node-id=102-995&t=3vYmuE5X8Xz0Ok3l-1).
+
 ## TODO:
 
 ### Frontend
