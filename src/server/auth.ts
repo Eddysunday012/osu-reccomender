@@ -4,6 +4,7 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
+import OsuProvider from "next-auth/providers/osu";
 
 import { env } from "~/env";
 
@@ -47,6 +48,10 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
+    }),
+    OsuProvider({
+      clientId: env.OSU_CLIENT_ID,
+      clientSecret: env.OSU_CLIENT_SECRET,
     }),
     /**
      * ...add more providers here.
