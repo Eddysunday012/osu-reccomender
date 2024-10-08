@@ -10,8 +10,10 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
 
 - [x] Create t3 App
 - [x] Install initially needed packages
-- [ ] Setup Auth Page
-- [ ] Home Page
+- [ ] Setup Cypress
+- [x] Setup Auth Page
+  - [ ] Style Auth Page
+- [ ] Home Page (scaffold version of it)
   - [ ] Navigation Bar
   - [ ] Side Bar
   - [ ] List of all User's Beatmaps
