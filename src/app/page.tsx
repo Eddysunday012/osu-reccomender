@@ -3,12 +3,12 @@ import Link from "next/link";
 import { LatestPost } from "~/app/_components/post";
 import { getServerAuthSession } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
+import "@/styles/globals.css";
+import NavBar from "./_components/NavigationBar";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
   const session = await getServerAuthSession();
-
-  void api.post.getLatest.prefetch();
 
   return (
     <HydrateClient>
@@ -29,6 +29,7 @@ export default async function Home() {
                 database and authentication.
               </div>
             </Link>
+            <NavBar />
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
               href="https://create.t3.gg/en/introduction"
