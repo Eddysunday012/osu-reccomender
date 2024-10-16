@@ -6,5 +6,7 @@ export default defineConfig({
       framework: "next",
       bundler: "webpack",
     },
+    viewportHeight: 500,
+    viewportWidth: 750,
   },
 });
