@@ -6,6 +6,7 @@ import { type Metadata } from "next";
 import { TRPCReactProvider } from "~/trpc/react";
 import SideBar from "./_components/SideBar";
 import NavBar from "./_components/NavigationBar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "Osu Reccomender",
@@ -20,7 +21,7 @@ export default function RootLayout({
     <TRPCReactProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
-          <div className="flex min-h-screen flex-row">
+          <div className="flex h-full flex-row">
             <SideBar
               sidebarItems={[
                 {
@@ -40,9 +41,9 @@ export default function RootLayout({
                 },
               ]}
             />
-            <div className="flex w-full flex-col">
+            <div className="flex h-screen w-full flex-col">
               <NavBar />
-              <div>{children}</div>
+              <ScrollArea className="h-full">{children}</ScrollArea>
             </div>
           </div>
         </body>

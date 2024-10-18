@@ -25,8 +25,8 @@ export default function SideBar({ sidebarItems }: SideBarProps) {
   };
 
   return (
-    <div className="flex h-screen flex-col bg-[#3B2738]">
-      <div className="flex h-20 w-full items-center justify-start gap-2">
+    <div className="flex min-h-full flex-col gap-2 bg-[#3B2738] text-[#F472B6]">
+      <div className="flex h-20 w-full items-center justify-start">
         <Button id="openMenuButton" variant="ghost" onClick={toggleMenu}>
           <Menu width={36} height={36} />
         </Button>
@@ -38,10 +38,18 @@ export default function SideBar({ sidebarItems }: SideBarProps) {
               href={item.href}
               className={cn(
                 buttonVariants({ variant: "ghost" }),
-                "my-1 mr-10 flex w-full justify-start gap-2",
+                openMenu
+                  ? "my-2 mr-10 flex w-full justify-start gap-2"
+                  : "my-2 flex w-full justify-center gap-2",
               )}
             >
-              <Image src={item.symbol} width={36} height={36} alt={item.name} />
+              <Image
+                src={item.symbol}
+                className="fill-[#F472B6]"
+                width={36}
+                height={36}
+                alt={item.name}
+              />
               {openMenu && item.name}
             </Link>
           </li>

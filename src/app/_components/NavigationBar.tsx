@@ -21,9 +21,9 @@ export default function NavBar() {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <Button id="search" variant="secondary" asChild>
+            <Button id="search" variant="outline" asChild>
               <Link href={`/search/${searchInput}`}>
-                <Search />
+                <Search className="stroke-[#F472B6]" />
               </Link>
             </Button>
           </div>

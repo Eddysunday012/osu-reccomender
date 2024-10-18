@@ -13,14 +13,16 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
 - [x] Setup Cypress
 - [x] Setup Auth Page
   - [ ] Style Auth Page
+- [ ] Main Layout Component (Navigation Bar and Side Bar)
+  - [ ] Navigation Bar
+    - [ ] Auth functionality (show profile on login)
+    - [x] Main functionality (without auth)
+    - [x] Styling
+  - [x] Side Bar
+    - [x] Main functionality
+    - [x] Styling
+  - [ ] e2e testing (making sure it navigates to proper pages)
 - [ ] Home Page (scaffold version of it)
-  - [ ] Main Layout Component
-    - [ ] Navigation Bar
-      - [x] Main functionality
-      - [ ] Styling
-    - [ ] Side Bar
-      - [x] Main functionality
-      - [ ] Styling
   - [ ] List of all User's Beatmaps
 
 ### Backend
