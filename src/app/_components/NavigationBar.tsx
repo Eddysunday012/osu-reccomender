@@ -6,19 +6,12 @@ import { Search, Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-interface NavBarProps {
-  openMenu: () => void;
-}
-
-export default function NavBar({ openMenu }: NavBarProps) {
+export default function NavBar() {
   const [searchInput, setSearchInput] = useState("");
 
   return (
-    <nav className="navbar h-15 bg-[#3B2738] p-5">
+    <nav className="navbar h-15 w-full bg-[#3B2738] p-5">
       <div className="flex flex-row items-center justify-between">
-        <Button id="openMenuButton" variant="outline" onClick={openMenu}>
-          <Menu />
-        </Button>
         <form className="m-1">
           <div className="flex flex-row gap-4">
             <Input

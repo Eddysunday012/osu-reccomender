@@ -14,8 +14,13 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
 - [x] Setup Auth Page
   - [ ] Style Auth Page
 - [ ] Home Page (scaffold version of it)
-  - [ ] Navigation Bar
-  - [ ] Side Bar
+  - [ ] Main Layout Component
+    - [ ] Navigation Bar
+      - [x] Main functionality
+      - [ ] Styling
+    - [ ] Side Bar
+      - [x] Main functionality
+      - [ ] Styling
   - [ ] List of all User's Beatmaps
 
 ### Backend
