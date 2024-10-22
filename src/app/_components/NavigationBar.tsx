@@ -1,36 +1,30 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search, Menu } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
-import { useState } from "react";
+import SearchBar from "./SearchBar";
+import { getServerAuthSession } from "~/server/auth";
 
-export default function NavBar() {
-  const [searchInput, setSearchInput] = useState("");
+export default async function NavBar() {
+  const session = await getServerAuthSession();
 
   return (
     <nav className="navbar h-15 w-full bg-[#3B2738] p-5">
       <div className="flex flex-row items-center justify-between">
-        <form className="m-1">
-          <div className="flex flex-row gap-4">
-            <Input
-              className=""
-              type="text"
-              placeholder="Search for beatmaps"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-            <Button id="search" variant="outline" asChild>
-              <Link href={`/search/${searchInput}`}>
-                <Search className="stroke-[#F472B6]" />
-              </Link>
-            </Button>
+        <SearchBar />
+        {session ? (
+          <div>
+            <Link href="/api/auth/signout">
+              <Avatar>
+                <AvatarImage src={session.user?.image ?? undefined} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </Link>
           </div>
-        </form>
-        <Button variant="outline" asChild>
-          <Link href="/api/auth/signin">Login with osu!</Link>
-        </Button>
+        ) : (
+          <Button variant="outline" id="search" asChild>
+            <Link href="/api/auth/signin">Login with osu!</Link>
+          </Button>
+        )}
       </div>
     </nav>
   );

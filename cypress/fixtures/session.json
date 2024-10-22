@@ -1,0 +1,10 @@
+{
+  "user": {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "image": "https://example.com/profile.jpg"
+  },
+  "accessToken": "your_access_token",
+  "refreshToken": "your_refresh_token",
+  "expires": "2024-11-21T23:59:59.999Z"
+}

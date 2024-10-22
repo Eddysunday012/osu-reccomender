@@ -1,7 +1,6 @@
 import React from "react";
 import SideBar from "./SideBar";
 import "@/styles/globals.css";
-import { House, Flame, Users } from "lucide-react";
 
 describe("<SideBar />", () => {
   const sidebarItems = [
