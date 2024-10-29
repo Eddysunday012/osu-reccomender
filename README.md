@@ -16,7 +16,7 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
 - [ ] Main Layout Component (Navigation Bar and Side Bar)
   - [ ] Navigation Bar
     - [x] Auth functionality (show profile on login)
-    - [ ] Isolate AvatarLoginButton from Navbar and use session as its prop for better testing
+    - [x] Isolate AvatarLoginButton from Navbar and use session as its prop for better testing
       - [ ] Then create test for this specific function
     - [x] Main functionality (without auth)
     - [x] Styling
@@ -31,6 +31,10 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
 
 ### Backend
 
+- [ ] Setup tRPC for API calls in nextjs application
+  - [ ] Figure out middleware functionality for refresh tokens
+  - [ ] Write tRPC osu route handler
+    - [ ] - testing
 - [ ] Setup Firebase
   - [ ] Create Firebase App
   - [ ] Setup Firebase Emulator

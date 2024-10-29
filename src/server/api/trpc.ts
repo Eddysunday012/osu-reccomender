@@ -24,9 +24,9 @@ import { getServerAuthSession } from "~/server/auth";
  *
  * @see https://trpc.io/docs/server/context
  */
+
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await getServerAuthSession();
-
   return {
     session,
     ...opts,
@@ -106,7 +106,6 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
  * are logged in.
  */
 export const publicProcedure = t.procedure.use(timingMiddleware);
-
 /**
  * Protected (authenticated) procedure
  *
