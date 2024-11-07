@@ -5,17 +5,20 @@ import "@/styles/globals.css";
 
 export default async function Home() {
   const session = await getServerAuthSession();
-  let beatmap = undefined;
+  let topbeatmaps = undefined;
+  const publicBeatmaps = await api.osu.getBeatmaps();
   if (session) {
-    beatmap = await api.osu.getUserBeatmaps({ id: "4637488" });
+    topbeatmaps = await api.osu.getUserTopBeatmapsets();
   }
   return (
     <HydrateClient>
       <div className="flex h-full w-full flex-col items-start justify-center bg-[#4C3A4B] text-white">
         {session ? (
-          <div>{JSON.stringify(beatmap)}</div>
+          <>
+            <div>{JSON.stringify(topbeatmaps)}</div>
+          </>
         ) : (
-          <div>Nothing here yet</div>
+          <div>{JSON.stringify(publicBeatmaps)}</div>
         )}
       </div>
     </HydrateClient>

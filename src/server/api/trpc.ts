@@ -9,6 +9,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import axios from "axios";
 
 import { getServerAuthSession } from "~/server/auth";
 
@@ -25,9 +26,25 @@ import { getServerAuthSession } from "~/server/auth";
  * @see https://trpc.io/docs/server/context
  */
 
+type publicSessionObj = {
+  token: string | null;
+  refreshTime: Date | null;
+};
+
+type authSessionResponse = {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
+};
+
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await getServerAuthSession();
+  const publicSession: publicSessionObj = {
+    token: null,
+    refreshTime: null,
+  };
   return {
+    publicSession,
     session,
     ...opts,
   };
@@ -98,6 +115,53 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
   return result;
 });
 
+const publicTokenMiddleware = t.middleware(async ({ next, ctx }) => {
+  const currentDate = new Date();
+  if (!ctx.publicSession.token && !ctx.publicSession.refreshTime) {
+    const { token, refreshTime } = await refreshPublicToken();
+    ctx.publicSession.token = token;
+    ctx.publicSession.refreshTime = refreshTime;
+  }
+
+  if (
+    ctx.publicSession.refreshTime &&
+    ctx.publicSession.refreshTime < currentDate
+  ) {
+    const { token, refreshTime } = await refreshPublicToken();
+    ctx.publicSession.token = token;
+    ctx.publicSession.refreshTime = refreshTime;
+  }
+
+  return next({
+    ctx: {
+      ...ctx.publicSession,
+    },
+  });
+});
+
+const refreshPublicToken = async (): Promise<publicSessionObj> => {
+  const osuUrlString = "https://osu.ppy.sh/oauth/token";
+  const getToken = await axios
+    .post<authSessionResponse>(
+      osuUrlString,
+      `client_id=${process.env.OSU_CLIENT_ID}&client_secret=${process.env.OSU_CLIENT_SECRET}&grant_type=client_credentials&scope=public`,
+    )
+    .then((response) => {
+      const refreshTimeSeconds =
+        new Date().getTime() + response.data.expires_in * 1000;
+      const refreshTime = new Date(refreshTimeSeconds);
+      return {
+        token: response.data.access_token,
+        refreshTime: refreshTime,
+      };
+    })
+    .catch((error) => {
+      throw error;
+    });
+
+  return getToken;
+};
+
 /**
  * Public (unauthenticated) procedure
  *
@@ -105,7 +169,9 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure.use(timingMiddleware);
+export const publicProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(publicTokenMiddleware);
 /**
  * Protected (authenticated) procedure
  *
