@@ -25,7 +25,7 @@ export default function SideBar({ sidebarItems }: SideBarProps) {
   };
 
   return (
-    <div className="flex min-h-full flex-col gap-2 bg-[#3B2738] text-[#F472B6]">
+    <div className="min-h-full max-w-full flex-none flex-col gap-2 bg-[#3B2738] text-[#F472B6]">
       <div className="flex h-20 w-full items-center justify-start">
         <Button id="openMenuButton" variant="ghost" onClick={toggleMenu}>
           <Menu width={36} height={36} />

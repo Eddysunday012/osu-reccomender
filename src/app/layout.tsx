@@ -21,7 +21,7 @@ export default function RootLayout({
     <TRPCReactProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body>
-          <div className="flex h-full flex-row">
+          <div className="flex min-h-screen min-w-fit flex-row">
             <SideBar
               sidebarItems={[
                 {
@@ -41,9 +41,9 @@ export default function RootLayout({
                 },
               ]}
             />
-            <div className="flex h-screen w-full flex-col">
+            <div className="flex h-full flex-1 grow flex-col">
               <NavBar />
-              <ScrollArea className="h-full">{children}</ScrollArea>
+              <ScrollArea>{children}</ScrollArea>
             </div>
           </div>
         </body>

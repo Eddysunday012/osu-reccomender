@@ -24,7 +24,7 @@ export const osuRouter = createTRPCRouter({
   getBeatmaps: publicProcedure.query(async ({ ctx }) => {
     const osuApiUrl = `https://osu.ppy.sh/api/v2/beatmapsets/search`;
     const response = await axios
-      .get<beatmap>(osuApiUrl, {
+      .get<beatmap[]>(osuApiUrl, {
         headers: {
           Authorization: `Bearer ${ctx.publicSession.token}`,
           "Content-Type": "application/json",
@@ -32,13 +32,12 @@ export const osuRouter = createTRPCRouter({
         },
       })
       .then((response) => {
-        const beatmap: beatmap = response.data;
+        const beatmap: beatmap[] = response.data;
         return beatmap;
       })
       .catch((reason) => {
         console.log(reason);
       });
-    console.log(response);
     return response;
   }),
   hello: publicProcedure

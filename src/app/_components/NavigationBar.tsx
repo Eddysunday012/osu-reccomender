@@ -8,7 +8,7 @@ export default async function NavBar() {
   const session = await getServerAuthSession();
 
   return (
-    <nav className="navbar h-15 w-full bg-[#3B2738] p-5">
+    <nav className="navbar h-15 none max-w-full bg-[#3B2738] p-5">
       <div className="flex flex-row items-center justify-between">
         <SearchBar />
         {session ? (

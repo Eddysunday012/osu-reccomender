@@ -26,8 +26,8 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
   - [ ] e2e testing (making sure it navigates to proper pages)
     - [x] Navigates to main three pages
     - [ ] Auth navigation works (figuring out how to properly test)
-- [ ] Home Page (scaffold version of it)
-  - [ ] List of all User's Beatmaps
+- [x] Home Page (scaffold version of it)
+  - [x] List of all User's Beatmaps
 
 ### Backend
 
