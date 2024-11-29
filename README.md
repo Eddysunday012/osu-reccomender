@@ -40,6 +40,7 @@ The figma design can be found [here](https://www.figma.com/design/tvCc0rsBiD7Ex1
   - [ ] Setup Firebase Emulator
 - [ ] Reccomender Model
   - [ ] Create Dataset
+    - [x] Find way to parse beatmap data from beatmapsets
   - [ ] Analyze Dataset
   - [ ] Generate Model
 - [ ] Deploy Model onto Firebase backend
